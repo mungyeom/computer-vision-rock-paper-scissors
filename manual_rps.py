@@ -9,7 +9,9 @@ def get_computer_choice():
 
 def get_user_choice():
     user = input('rock, scissors, paper: ')
-    print(user)
+    return user
+
+get_user_choice()
 
 
 
