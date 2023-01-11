@@ -11,7 +11,6 @@ def get_user_choice():
     user = input('rock, scissors, paper: ')
     return user
 
-get_user_choice()
 
 
 
