@@ -10,15 +10,19 @@ def get_user_choice():
     user = input('Rock, Paper, Scissors: ')
     return user
 
-def get_winner(user, com):
-    
-    if user == com: 
+get_computer_choice()
+get_user_choice()
+
+def get_winner():
+    com = get_computer_choice()
+    user = get_user_choice()
+    if  com == user: 
         print("It is a tie!")
     elif user == 'Rock' and com == 'Paper':
         print("You lost")
     elif user == 'Scissors' and com == 'Rock':
         print("You lost")
-    elif user == 'Paper' and com == 'Scissors':
+    elif  user == 'Paper' and com == 'Scissors':
         print("You lost")
     else:
         print("You won!")
@@ -32,3 +36,5 @@ def play():
     return
 
 play()
+
+get_winner()
