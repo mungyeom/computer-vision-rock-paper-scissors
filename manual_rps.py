@@ -2,27 +2,32 @@ import random
 
 
 def get_computer_choice():
+    global computer_choice
     sel = ['Rock', 'Paper', 'Scissors']
-    com = random.choice(sel)
-    return com
-
-def get_user_choice():
-    user = input('Rock, Paper, Scissors: ')
-    return user
+    computer_choice = random.choice(sel)
+    return computer_choice
 
 get_computer_choice()
-get_user_choice()
+print(computer_choice)
 
-def get_winner():
-    com = get_computer_choice()
-    user = get_user_choice()
-    if  com == user: 
+
+def get_user_choice():
+    global user_choice
+    user_choice = input('Rock, Paper, Scissors: ')
+    return user_choice
+
+get_user_choice()
+user_choice
+
+
+def get_winner(computer_choice,user_choice):
+    if  user_choice == computer_choice: 
         print("It is a tie!")
-    elif user == 'Rock' and com == 'Paper':
+    elif user_choice == 'Rock' and computer_choice == 'Paper':
         print("You lost")
-    elif user == 'Scissors' and com == 'Rock':
+    elif user_choice == 'Scissors' and computer_choice == 'Rock':
         print("You lost")
-    elif  user == 'Paper' and com == 'Scissors':
+    elif  user_choice == 'Paper' and computer_choice == 'Scissors':
         print("You lost")
     else:
         print("You won!")
@@ -30,11 +35,10 @@ def get_winner():
 
 def play():
     print('Rock-Paper-Scissors')
-    com = get_computer_choice()
-    user = get_user_choice()
-    game = get_winner(user, com)
+    get_computer_choice()
+    get_user_choice()
+    get_winner(computer_choice, user_choice)
     return
 
 play()
 
-get_winner()
