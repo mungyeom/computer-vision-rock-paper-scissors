@@ -10,3 +10,28 @@ That means that the first element in the list returned from the model is a list 
 Print the response of the model if you are unclear of this.
 
 '''
+
+import cv2
+import numpy as np
+from keras.models import load_model
+import mediapipe as mp
+
+model = load_model('keras_model.h5')
+rps_gestures = {0:'Rock', 1: 'Scissors', 2:'Paper',3:'Nothing'}
+cap = cv2.VideoCapture(0)
+data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+
+with mp_hands.Hands(
+    max_num_hands =1, # recognise only one hand 
+    min_detection_cofidence =0.5
+    min_tracking_confidence = 0.5) as hands: 
+
+    while cap.isOpended():
+        success, image = cap.read()
+        if not success:
+            continue
+
+        
+
+
+
