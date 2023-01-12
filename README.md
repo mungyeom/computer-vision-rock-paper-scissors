@@ -72,4 +72,4 @@
 - Now when you run the code, it should play a game of Rock-Paper-Scissors, and it should print whether the computer or  you won.
 
 
-
+![rock-paper-scissors-neon-icons](https://user-images.githubusercontent.com/42192474/212176424-e4249b14-848c-4dab-9dda-0b20c8758cc4.png)
