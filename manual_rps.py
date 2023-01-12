@@ -2,23 +2,23 @@ import random
 
 
 def get_computer_choice():
-    sel = ['rock', 'scissors', 'paper']
+    sel = ['Rock', 'Paper', 'Scissors']
     com = random.choice(sel)
     return com
 
 def get_user_choice():
-    user = input('rock, scissors, paper: ')
+    user = input('Rock, Paper, Scissors: ')
     return user
 
 def get_winner(user, com):
     
     if user == com: 
         print("It is a tie!")
-    elif user == 'rock' and com == 'paper':
+    elif user == 'Rock' and com == 'Paper':
         print("You lost")
-    elif user == 'scissors' and com == 'rock':
+    elif user == 'Scissors' and com == 'Rock':
         print("You lost")
-    elif user == 'paper' and com == 'scissors':
+    elif user == 'Paper' and com == 'Scissors':
         print("You lost")
     else:
         print("You won!")
@@ -32,5 +32,3 @@ def play():
     return
 
 play()
-    
-
