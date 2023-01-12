@@ -1,8 +1,8 @@
 import random
 
-sel = ['rock', 'scissors', 'paper']
 
 def get_computer_choice():
+    sel = ['rock', 'scissors', 'paper']
     com = random.choice(sel)
     return com
 
@@ -32,7 +32,5 @@ def play():
     return
 
 play()
-    
-    
     
 
