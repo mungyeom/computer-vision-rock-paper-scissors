@@ -7,8 +7,6 @@ def get_computer_choice():
     computer_choice = random.choice(sel)
     return computer_choice
 
-get_computer_choice()
-print(computer_choice)
 
 
 def get_user_choice():
@@ -16,8 +14,7 @@ def get_user_choice():
     user_choice = input('Rock, Paper, Scissors: ')
     return user_choice
 
-get_user_choice()
-user_choice
+
 
 
 def get_winner(computer_choice,user_choice):
@@ -40,5 +37,4 @@ def play():
     get_winner(computer_choice, user_choice)
     return
 
-play()
 
