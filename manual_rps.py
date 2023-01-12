@@ -3,8 +3,7 @@ import random
 sel = ['rock', 'scissors', 'paper']
 
 def get_computer_choice():
-    com = random.randint(0,2)
-    com = sel[com]
+    com = random.choice(sel)
     return com
 
 def get_user_choice():
@@ -25,6 +24,15 @@ def get_winner(user, com):
         print("You won!")
     
 
-com = get_computer_choice()
-user = get_user_choice()
-get_winner(user, com)
+def play():
+    print('Rock-Paper-Scissors')
+    com = get_computer_choice()
+    user = get_user_choice()
+    game = get_winner(user, com)
+    return
+
+play()
+    
+    
+    
+
