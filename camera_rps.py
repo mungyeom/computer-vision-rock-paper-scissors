@@ -70,7 +70,7 @@ def get_prediction():
     computer_wins = 0
     stateResult = False
     startGame = False
-    img = None  
+    img = None  # declare img
     while user_wins < 4 and computer_wins < 4:
         if user_wins == 3:
             print('You won the game!')
@@ -93,7 +93,7 @@ def get_prediction():
                 cv2.destroyAllWindows()
         
         if cap.isOpened():
-            ret, img = cap.read()  # img 변수 업데이트
+            ret, img = cap.read()  # update img variable
             if not ret:
                 break
             if startGame:
@@ -147,7 +147,7 @@ def get_prediction():
                         print('Win')
                         print(user_wins)
 
-            cv2.imshow('result', img)  # 이미지 크기 확인
+            cv2.imshow('result', img)  # check the image size
             if cv2.waitKey(1) == ord('s'):
                 get_computer_choice()
                 wins_necessary = 3
