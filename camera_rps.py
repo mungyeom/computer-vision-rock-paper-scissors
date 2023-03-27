@@ -4,6 +4,10 @@ import cv2
 import time
 import random
 import math
+import os
+path = os.getcwd()
+print(path)
+os.chdir('/Users/gyeomi/Desktop/Aicore/Project_3')
 
 model = tensorflow.keras.models.load_model('keras_model.h5')
 
@@ -64,81 +68,95 @@ def get_computer_choice():
 #             print("You win!! You have chosen {} and the computer has chosne {}. \n" .format(user_choice,computer_choice) )
 
 
-
 def get_prediction():
     user_wins = 0
     computer_wins = 0
     stateResult = False
     startGame = False
-    while user_wins > 3 or computer_wins > 3 :
-        if user_wins > 3:
-            print('YOU WIN')
-        elif computer_wins >3 :
-            print('YOU LOSE')
-    while cap.isOpened():
-        ret, img, =cap.read()
-        if not ret:
+    img = None  
+    while user_wins < 4 and computer_wins < 4:
+        if user_wins == 3:
+            print('You won the game!')
             break
-        if startGame:
-            if stateResult is False:
-                timer = (time.time() - initialTime) 
-                h, w, _ = img.shape
-                cx = h/2
-                img = img[:,200:200+img.shape[0]]
-                img = cv2.flip(img,1)
-
-                img_input = cv2.resize(img, size)
-                img_input = cv2.cvtColor(img_input, cv2.COLOR_BGR2RGB)
-                img_input = (img_input.astype(np.float32)/ 127.0) -1
-                img_input = np.expand_dims(img_input, axis=0)
-
-                prediction = model.predict(img_input)
-                idx = np.argmax(prediction)
-
-                cv2.putText(img, str(int(timer)), org=(650,30), fontFace=cv2.FONT_HERSHEY_SIMPLEX, \
-                fontScale=0.8, color= (255,255,255), thickness=2)
-
-                cv2.putText(img, text= classes[idx], org=(10,30), fontFace=cv2.FONT_HERSHEY_SIMPLEX, \
-                fontScale=0.8, color= (255,255,255), thickness=2)
-
-    
-            if timer > 3:
-                stateResult = True
-                timer = 0
-                user_choice = classes[idx]
-                print('You chose' , classes[idx])
-
-                
-                if user_choice == computer_choice: 
-                    print('Tie')
-                elif user_choice == 'Rock' and computer_choice == 'Paper':
-                    computer_wins += 1
-                    print('Lose')
-                    print(computer_wins)
-                elif user_choice == 'Scissors' and computer_choice == 'Rock':
-                    computer_wins += 1
-                    print('Lose')
-                    print(computer_wins)
-                elif  user_choice == 'Paper' and computer_choice == 'Scissors':
-                    computer_wins += 1
-                    print('Lose')
-                    print(computer_wins)
-                elif user_choice == 'Nothing':
-                    print('Again')
+        elif computer_wins == 3 :
+            print('You lost the game!')
+            while True:
+                restart = input('Do you want to play again? (y/n) ')
+                if restart == 'y':
+            # 게임 재시작
+                    user_wins = 0
+                    computer_wins = 0
+                    get_computer_choice()
+                    get_prediction()
+                elif restart == 'n':
+                    print('Thanks for playing!')
                 else:
-                    user_wins += 1
-                    print('Win')
-                    print(user_wins)
+                    print('Invalid input. Please enter y or n.')
+                cap.release()
+                cv2.destroyAllWindows()
+        
+        if cap.isOpened():
+            ret, img = cap.read()  # img 변수 업데이트
+            if not ret:
+                break
+            if startGame:
+                if stateResult is False:
+                    timer = (time.time() - initialTime) 
+                    h, w, _ = img.shape
+                    cx = h/2
+                    img = img[:,200:200+img.shape[0]]
+                    img = cv2.flip(img,1)
 
-        cv2.imshow('result', img)
-        if cv2.waitKey(1) == ord('s'):
-            get_computer_choice()
-            wins_necessary = 3
-            startGame = True 
-            initialTime = time.time()
-            stateResult = False
+                    img_input = cv2.resize(img, size)
+                    img_input = cv2.cvtColor(img_input, cv2.COLOR_BGR2RGB)
+                    img_input = (img_input.astype(np.float32)/ 127.0) -1
+                    img_input = np.expand_dims(img_input, axis=0)
 
-    
+                    prediction = model.predict(img_input)
+                    idx = np.argmax(prediction)
+
+                    cv2.putText(img, str(int(timer)), org=(650,30), fontFace=cv2.FONT_HERSHEY_SIMPLEX, \
+                    fontScale=0.8, color= (0, 0, 0), thickness=2)
+
+                    cv2.putText(img, text= classes[idx], org=(10,30), fontFace=cv2.FONT_HERSHEY_SIMPLEX, \
+                    fontScale=0.8, color= (0, 255, 0), thickness=2)
+
+        
+                if timer > 3:
+                    stateResult = True
+                    timer = 0
+                    user_choice = classes[idx]
+                    print('You chose' , classes[idx])
+
+                    
+                    if user_choice == computer_choice: 
+                        print('Tie')
+                    elif user_choice == 'Rock' and computer_choice == 'Paper':
+                        computer_wins += 1
+                        print('Lose')
+                        print(computer_wins)
+                    elif user_choice == 'Scissors' and computer_choice == 'Rock':
+                        computer_wins += 1
+                        print('Lose')
+                        print(computer_wins)
+                    elif user_choice == 'Paper' and computer_choice == 'Scissors':
+                        computer_wins += 1
+                        print('Lose')
+                        print(computer_wins)
+                    elif user_choice == 'Nothing':
+                        print('Again')
+                    else:
+                        user_wins += 1
+                        print('Win')
+                        print(user_wins)
+
+            cv2.imshow('result', img)  # 이미지 크기 확인
+            if cv2.waitKey(1) == ord('s'):
+                get_computer_choice()
+                wins_necessary = 3
+                startGame = True 
+                initialTime = time.time()
+                stateResult = False
+
 
 get_prediction()
-
