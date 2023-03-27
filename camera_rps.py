@@ -4,10 +4,7 @@ import cv2
 import time
 import random
 import math
-import os
-path = os.getcwd()
-print(path)
-os.chdir('/Users/gyeomi/Desktop/Aicore/Project_3')
+
 
 model = tensorflow.keras.models.load_model('keras_model.h5')
 
