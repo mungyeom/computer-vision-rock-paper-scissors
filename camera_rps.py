@@ -80,7 +80,7 @@ def get_prediction():
             while True:
                 restart = input('Do you want to play again? (y/n) ')
                 if restart == 'y':
-            # 게임 재시작
+            # restart the game
                     user_wins = 0
                     computer_wins = 0
                     get_computer_choice()
